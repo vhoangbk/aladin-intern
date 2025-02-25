@@ -1,7 +1,7 @@
 import React from "react";
 import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
 
-function TextInputItem({image1,image2,placeHolderHint}:any){
+function TextInputItem({image1,image2,placeHolderHint,maxLength,keyboardType,secureTextEntry}:any){
     return(
       <View style={styles.container}>
           <View style={styles.containerImage}>
@@ -11,7 +11,10 @@ function TextInputItem({image1,image2,placeHolderHint}:any){
           <TextInput 
               style={styles.inputStyle} 
               placeholder={placeHolderHint}
-              placeholderTextColor={"#ADA4A5"}/>
+              placeholderTextColor={"#ADA4A5"}
+              maxLength={maxLength}
+              keyboardType={keyboardType}
+              secureTextEntry={secureTextEntry}/>
 
           <View style={styles.containerImage}>
             <Image source={image2} style={styles.imageStyle2}/>
