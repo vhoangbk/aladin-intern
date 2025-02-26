@@ -70,7 +70,7 @@ function RegisterScreen({navigation}:RegisterScreenProps){
                     <View>
                         {/* Button */}
                         <View style={{marginBottom:30}}>
-                            <TouchableOpacity onPress={()=> navigation.navigate("HomeScreen")}>
+                            <TouchableOpacity onPress={()=> navigation.navigate("InforRegisterScreen")}>
                                 <ButtonItem 
                                     textButton={"Register"}/>
                             </TouchableOpacity>
