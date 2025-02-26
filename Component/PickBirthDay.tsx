@@ -73,11 +73,10 @@ const styles = StyleSheet.create({
 
   },
   inputStyle:{
-    marginTop:13,
     marginLeft:13,
     color: "#ADA4A5",
     fontFamily:"Poppins",
-
+    marginTop:13
   },
   imageStyle:{
     width:18,

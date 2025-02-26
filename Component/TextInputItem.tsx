@@ -1,7 +1,8 @@
-import React from "react";
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, { useState } from "react";
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 
 function TextInputItem({image1,image2,placeHolderHint,maxLength,keyboardType,secureTextEntry}:any){
+      const [hidepassword,setHidePassword] = useState(secureTextEntry)
     return(
       <View style={styles.container}>
           <View style={styles.containerImage}>
@@ -14,11 +15,13 @@ function TextInputItem({image1,image2,placeHolderHint,maxLength,keyboardType,sec
               placeholderTextColor={"#ADA4A5"}
               maxLength={maxLength}
               keyboardType={keyboardType}
-              secureTextEntry={secureTextEntry}/>
+              secureTextEntry={hidepassword}/>
 
-          <View style={styles.containerImage}>
-            <Image source={image2} style={styles.imageStyle2}/>
-          </View>
+          <TouchableOpacity onPress={()=>setHidePassword(!hidepassword)}>
+            <View style={styles.containerImage}>
+              <Image source={image2} style={styles.imageStyle2}/>
+            </View>
+          </TouchableOpacity>
       </View>
         
     )

@@ -10,7 +10,7 @@ function SelectGender(){
                 <Image source={require('../assets/2user.png')}/>
             </View>
 
-            <View >
+            <View style={{justifyContent:"center"}}>
                 <Picker
                     selectedValue={selectedGender}
                     onValueChange={(itemValue) => setSelectedGender(itemValue)}
@@ -46,8 +46,9 @@ const styles = StyleSheet.create({
         alignItems: "center", 
     },
     picker:{
+        marginLeft:-7,
         height:56,
         width:255,
-        color:"#ADA4A5",
+        color:"#ADA4A5"
     }
 })

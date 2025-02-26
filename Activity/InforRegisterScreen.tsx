@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Image, ScrollView, StyleSheet, Text, TextInputComponent, TouchableOpacity, View} from 'react-native';
+import {Button, Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInputComponent, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
 import TextInputItem from '../Component/TextInputItem';
 import ButtonItem from '../Component/ButtonItem';
 import QuantitativeIcon from '../Component/QuantitativeIcon';
@@ -9,13 +9,19 @@ import PickBirthDay from '../Component/PickBirthDay';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../type/types';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type InforRegisterScreenProps = NativeStackScreenProps<RootStackParamList,'InforRegisterScreen'>
 
 function InforRegisterScreen({navigation}:InforRegisterScreenProps){
     return(
-    <ScrollView >
-      <View style={styles.container}>
+
+      <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+
+      <View style={{flex:1,alignItems:"center",justifyContent:"space-around"}}>
 {/* Ảnh */}
         <View id="viewImage">
           <Image 
@@ -32,7 +38,7 @@ function InforRegisterScreen({navigation}:InforRegisterScreenProps){
 {/* Form */}
         <View id="viewTextInput" style={styles.viewInputStyle}>
 {/* Chọn Giới tính */}
-            <SelectGender/>          
+            <SelectGender/>
 {/* Chọn ngày sinh */}
             <PickBirthDay/>
 {/* Cân nặng */}
@@ -43,7 +49,6 @@ function InforRegisterScreen({navigation}:InforRegisterScreenProps){
                 placeHolderHint="Your Weight"
                 maxLength={3}
                 keyboardType={"numeric"}/>
-{/* Đơn vị Kilogram*/}
               <QuantitativeIcon quantitative="KG"/>
             </View>
 {/* Chiều cao */}
@@ -54,21 +59,23 @@ function InforRegisterScreen({navigation}:InforRegisterScreenProps){
                 placeHolderHint="Your Height"
                 maxLength={3}
                 keyboardType={"numeric"}/>
-{/* Đơn vị centimet */}
               <QuantitativeIcon quantitative="CM"/>
             </View>
-        </View>
+        </View> 
 
 {/* Button next */}
-        <View style={{marginTop:45,marginBottom:30}}>
-            <TouchableOpacity onPress={()=>navigation.navigate("HomeScreen")}>
-                <ButtonItem textButton ="NEXT" iconButton={require('../assets/rightarrow.png')}/>
-            </TouchableOpacity>
-        </View>
-        
-
+          <View style={{marginTop:45,marginBottom:30}}>
+              <TouchableOpacity onPress={()=>navigation.navigate("HomeScreen")}>
+                  <ButtonItem textButton ="NEXT" iconButton={require('../assets/rightarrow.png')}/>
+              </TouchableOpacity>
+          </View>
       </View>
-    </ScrollView>
+
+
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
+      </SafeAreaView>
     )
 }
 
@@ -98,7 +105,7 @@ const styles = StyleSheet.create({
     height:249,
     marginLeft:30,
     marginRight:50,
-    marginTop:18
+    marginTop:18,
   }
 });
 

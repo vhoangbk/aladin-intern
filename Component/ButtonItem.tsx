@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         width:315,
         justifyContent:"center",
         alignItems:"center",
-
+        marginLeft:10
     },
     textStyle:{
         color:"#FFFFFF",

@@ -1,10 +1,12 @@
-import { Image, StyleSheet, View } from "react-native"
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
 
 function SocialLoginButton ({logoButton}:any) {
     return(
-        <View style={styles.container}>
-            <Image source={logoButton} style={{width:20,height:20}}/>
-        </View>
+        <TouchableOpacity>
+            <View style={styles.container}>
+                <Image source={logoButton} style={{width:20,height:20}}/>
+            </View>
+        </TouchableOpacity>
     )
 }
 

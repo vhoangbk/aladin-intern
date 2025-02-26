@@ -14,6 +14,7 @@ import HomeScreen from './HomeScreen';
 import InforRegisterScreen from './InforRegisterScreen';
 import SplashScreen from './SplashScreen';
 import LoginScreen from './LoginScreen';
+import RegisterScreen from './RegisterScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,15 +27,23 @@ function App() {
             component ={SplashScreen}
             />
         <Stack.Screen 
+            name="RegisterScreen" 
+            component ={RegisterScreen}
+            options={{animation:"slide_from_right"}}
+            />
+        <Stack.Screen 
             name="LoginScreen" 
-            component={LoginScreen}/>
+            component={LoginScreen}
+            options={{animation:"slide_from_right"}}/>
         <Stack.Screen 
             name="InforRegisterScreen" 
             component={InforRegisterScreen}
+            options={{animation:"slide_from_right"}}
             />
         <Stack.Screen 
             name="HomeScreen" 
             component={HomeScreen}
+            options={{animation:"slide_from_right"}}
             />
       </Stack.Navigator>
     </NavigationContainer>

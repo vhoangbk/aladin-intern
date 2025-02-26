@@ -1,9 +1,10 @@
 import React from "react";
-import {Button, Image, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 
 function QuantitativeIcon({quantitative}:any){
     return(
+        <TouchableOpacity>
             <LinearGradient 
                 colors={['#EEA4CE','#C58BF2']} 
                 style={styles.container}
@@ -13,8 +14,9 @@ function QuantitativeIcon({quantitative}:any){
                 <View style={styles.containerText}>
                       <Text style={styles.textStyle}>{quantitative}</Text>
                 </View>
-
+                
             </LinearGradient>
+        </TouchableOpacity>
     )
 
 

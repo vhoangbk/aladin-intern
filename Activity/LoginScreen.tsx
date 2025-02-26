@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import TextInputItem from "../Component/TextInputItem";
 import ButtonItem from "../Component/ButtonItem";
@@ -6,17 +6,22 @@ import SocialLoginButton from "../Component/SocialLoginButton";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../type/types";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type LoginScreenProps= NativeStackScreenProps<RootStackParamList,"LoginScreen">
 function LoginScreen({navigation}:LoginScreenProps) {
+
+    const [hidePassword,setHidePassword] = useState(true)
+
     return(
+    <SafeAreaView style={{flex:1}}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex:1}}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
 
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
-
+            <View style={styles.container}>
             {/* 2 dòng chữ và 2 ô input */}
-            <View>
+            <View >
                 {/* Text */}
                 <View style={{alignItems:"center", marginTop:40}}>
                     <Text style={styles.textStyle1}>Hey there,</Text>
@@ -33,17 +38,19 @@ function LoginScreen({navigation}:LoginScreenProps) {
                         image1={require('../assets/password.png')} 
                         image2={require('../assets/hidepassword.png')} 
                         placeHolderHint={"Password"} 
-                        secureTextEntry={true}/>
-                    <View style={{alignItems:"center",marginTop:3}}>
-                        <Text style={styles.textStyles3}>Forgot your password?</Text>
-                    </View>
+                        secureTextEntry={hidePassword}/>
+                        <TouchableOpacity>
+                            <View style={{alignItems:"center",marginTop:3}}>
+                                <Text style={styles.textStyles3}>Forgot your password?</Text>
+                            </View>
+                        </TouchableOpacity>
                 </View>
             </View>
 
 
 
             {/* Còn lại */}
-            <View style={{marginTop:170}}>
+            <View>
                 {/* Button */}
                 <View style={{marginBottom:30}}>
                     <TouchableOpacity onPress={ () => navigation.navigate("HomeScreen") }>
@@ -76,17 +83,19 @@ function LoginScreen({navigation}:LoginScreenProps) {
                 <View style={{alignItems:"center",marginBottom:10,marginTop:10,flexDirection:"row",justifyContent:"center"}}>
                     <Text style={styles.textStyle1}>Don’t have an account yet? </Text>
                     {/* Dang ki */}
-                    <TouchableOpacity onPress={()=> navigation.navigate("InforRegisterScreen")}>
+                    <TouchableOpacity onPress={()=> navigation.navigate("RegisterScreen")}>
                         <Text style={{color:"#e95cff"}}>
                             Register
                         </Text>
                     </TouchableOpacity>
                 </View>
             </View>
+        </View>
 
-        </ScrollView>
-        </TouchableWithoutFeedback>
+                </ScrollView>
+            </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
+    </SafeAreaView>
         
     )
 }
@@ -94,15 +103,14 @@ function LoginScreen({navigation}:LoginScreenProps) {
 
     const styles= StyleSheet.create({
         scrollContainer:{ 
+            flex:1,
             flexGrow: 1, 
-            alignItems: 'center', 
-            padding: 20 
         },
         container:{
             flex:1,
             alignItems:"center",
             backgroundColor:"#ffffff",
-            justifyContent:"space-between"
+            justifyContent:"space-around",
         },
         textStyle1:{
             fontFamily:"Poppins",
